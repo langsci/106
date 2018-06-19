@@ -1,0 +1,52 @@
+\documentclass[tikz,border=10pt]{standalone}
+\usetikzlibrary{
+    positioning,
+    fit
+}
+\usepackage{xcolor}
+
+\begin{document}
+% Define Styles
+\tikzstyle{block} = [
+    rectangle, 
+    draw,  
+    text centered, 
+    text width = 11em,
+    minimum height=2em, 
+    minimum width = 12em, 
+    line width = 0.1em
+]
+\tikzstyle{none} = [
+    text centered, 
+    minimum height=2em, 
+    minimum width = 6em, 
+    line width = 0.1em
+]
+
+\tikzstyle{line} = [draw, -latex, line width=0.1em]
+
+\begin{tikzpicture}[scale=0.6]
+   
+    \node [none] (baseline-system) {\sffamily SMT \textbf{baseline} system};
+    \node [block, below = .25em of baseline-system] (word-alignment) {\sffamily Word alignment};
+    \node [block, below = .25em of word-alignment] (language-model) {\sffamily Language model};
+    \node [block, below = .25em of language-model] (translation-model) {\sffamily Translation model};
+    \node [block, below = .25em of translation-model] (reordering-model) {\sffamily Reordering model};
+
+    \node[
+        block,
+        fit = (baseline-system)(word-alignment)(language-model)(translation-model)(reordering-model)
+        ] (baseline-system) {};
+
+    \node [block, below = 4em of baseline-system] (adapted-system) {\sffamily SMT \textbf{adapted} system};
+    \node [block, fill=blue!20, below left = -2em and 4em of baseline-system] (in-domain-data) {\sffamily In-domain training data \\ (target domain)};
+    \node [block, fill=blue!20, below right = -2em and 4em of baseline-system] (testing-data) {\sffamily In-domain testing data \\ (target domain)};
+    \node [block, fill=yellow!20, above = 4em of baseline-system] (out-domain-data) {\sffamily Out-of-domain training data \\ (source domain)};
+
+    % Label
+    \draw[line] (baseline-system.south) -- (adapted-system.north) node [midway, fill=white] {\sffamily adapt};
+    \draw[line] (in-domain-data.south) to[out=-90,in=-180] node [midway, fill=white] {\sffamily infer} (adapted-system.west);
+    \draw[line] (adapted-system.east) to[out=0,in=-90] node [midway, fill=white] {\sffamily apply} (testing-data.south);
+    \draw[line] (out-domain-data.south) -- (baseline-system.north) node [midway, fill=white] {\sffamily infer};
+\end{tikzpicture}
+\end{document}
