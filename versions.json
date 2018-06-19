@@ -2,7 +2,12 @@
   "versions": [{
     "versiontype": "proofreading",
     "title": "Language technologies for a multilingual Europe",
-    "authors": [{"name": "Georg Rehm, Daniel Stein, Felix Sasaki and Andreas Witt"}],
+    "authors": [{"name": "Georg Rehm"}, {"name": "Daniel Stein"}, {"name": "Felix Sasaki"}, {"name": "Andreas Witt"}],
     "publishedAt": "2017-07-31T11:00:00.000Z"
+  },{
+    "versiontype": "first_edition",
+    "title": "Language technologies for a multilingual Europe",
+    "authors": [{"name": "Georg Rehm"}, {"name": "Daniel Stein"}, {"name": "Felix Sasaki"}, {"name": "Andreas Witt"}],
+    "publishedAt": "2018-06-19T11:00:00.000Z"
   }]
 }
